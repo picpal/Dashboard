@@ -30,7 +30,7 @@ export default class AgencyBoard {
       cards[key] = new ChartCard({
         $app: $cardWrap,
         id: key,
-        title: "",
+        title: this.getCardTitle(key),
         selectBoxData: [],
         chartData: {},
       });
@@ -46,6 +46,23 @@ export default class AgencyBoard {
 
   getCardWrap = () => {
     return document.querySelector("#agency_board .cardWrap");
+  };
+
+  getCardTitle = (id) => {
+    let result = "";
+    switch (id) {
+      case "cetification":
+        result = "인증";
+        break;
+      case "regis":
+        result = "등록";
+        break;
+      case "approval":
+        result = "승인";
+        break;
+    }
+
+    return result;
   };
 
   setState = (newState) => {
@@ -64,7 +81,7 @@ export default class AgencyBoard {
     // setSate card
     const card = this.#cards[id];
     card.setState({
-      title: "",
+      title: this.getCardTitle(id),
       selectBoxData: null,
       chartData: null,
     });
