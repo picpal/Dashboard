@@ -5,101 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./src/assets/css/tailwind.css">
+  <link rel="stylesheet" href="./src/assets/css/c3Custom.css">
+  <link href="./src/c3/c3.min.css" rel="stylesheet">
+  <script src="./src/c3/d3.v5.min.js" charset="utf-8"></script>
+  <script src="./src/c3/c3.min.js"></script>
   <script src="./src/index.js" type="module"></script>
   <title>DashBoard</title>
 </head>
 <body class="bg-black">
-  <div id="app" >
-    <!-- header -->
-    <header class="h-20">
-      <!-- logo -->
-      <div>
-        <h1>logo</h1>
-      </div>
-
-      <!-- btn group -->
-      <div>
-        <select name="" id="">
-          <option value="7">for 7days</option>
-          <option value="30">for 30days</option>
-        </select>
-      </div>
-
-      <!-- profile -->
-      <div>
-        <div><img src="" alt=""></div>
-        <div>user name</div>
-      </div>
-
-    </header>
-
-    <div class="flex flex-row">
-      <!-- left nav -->
-      <nav class="w-1/12">
-        <div class="bg-gray-800 w-20 h-screen fixed z-50">
-          
-        </div>
-      </nav>
-
-      <!-- 
-        성공 : green
-        실패 : red
-        통신장애 : orange
-        타임아웃 : yellow
-      -->
-
-      <!-- dash board view -->
-      <div id="dashboard_wrap" class="w-11/12 p-6 pl-0 pr-9">
-        <!-- total Count -->
-        <section id="total_board" class="flex flex-row gap-2">
-          <h2 class="hidden">전체 현황</h2>
-
-          <!-- 성공 건수 -->
-          <div id="total_success_info" class="p-2 pt-4 pb-4 w-2/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-green-400 w-24 h-24 text-center text-white font-normal text-3xl">50%</div>
-            <div class="count mt-3 text-white text-center">11,220</div>
-            <div class="description mt-1 text-white text-center">total Success count</div>
-          </div>
-
-          <!-- 실패 건수 -->
-          <div id="total_fail_info" class="p-2 pt-4 pb-4 w-2/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-red-400 w-24 h-24 text-center text-white font-normal text-3xl">50%</div>
-            <div class="count mt-3 text-white text-center">11,220</div>
-            <div class="description mt-1 text-white text-center">total fail count</div>
-          </div>
-
-          <!-- 통신장애 건수 -->
-          <div id="total_error_info" class="p-2 pt-4 pb-4 w-2/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-orange-400 w-24 h-24 text-center text-white font-normal text-3xl">50%</div>
-            <div class="count mt-3 text-white text-center">11,220</div>
-            <div class="description mt-1 text-white text-center">total error count</div>
-          </div>
-
-          <!-- 타임아웃 건수 -->
-          <div id="total_timeout_info" class="p-2 pt-4 pb-4 w-2/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-yellow-400 w-24 h-24 text-center text-white font-normal text-3xl">50%</div>
-            <div class="count mt-3 text-white text-center">11,220</div>
-            <div class="description mt-1 text-white text-center">total timeout count</div>
-          </div>
-
-          <!-- 기간 추세 그래프 -->
-          <div id="total_flow_info" class="w-4/12 rounded-lg p-2 pt-4 pb-4 bg-gray-800">
-            
-          </div>
-        </section>
-
-        <!-- register Count -->
-        <section id="regis_board">
-          <h2>등록/결제 현황</h2>
-        </section>
-
-        <!-- confirm Count -->
-        <section id="confirm_board">
-          <h2>승인 현황</h2>
-        </section>
-
-      </div>
-    </div>
-  </div>
+  <div id="app"></div>
 </body>
 </html>
