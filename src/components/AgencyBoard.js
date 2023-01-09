@@ -2,13 +2,13 @@ import ChartCard from "./ChartCard.js";
 
 export default class AgencyBoard {
   #app;
-  #state;
+  #state = {};
   #target;
   #cards;
 
-  constructor({ $app, initState }) {
+  constructor({ $app, initState = {} }) {
     this.#app = $app;
-    this.#state = {};
+    this.#state = initState;
     this.#cards = {
       cetification: null,
       regis: null,
@@ -24,15 +24,24 @@ export default class AgencyBoard {
     // agency card wrapper
     const $cardWrap = this.getCardWrap();
 
+    // agency list request
+    const selectBoxData = [
+      { name: "현대카드", value: "C007" },
+      { name: "블루월넛", value: "BWPG" },
+    ];
+
     // card conponent initialize
     const cards = this.#cards;
     for (let key in cards) {
       cards[key] = new ChartCard({
         $app: $cardWrap,
-        id: key,
-        title: this.getCardTitle(key),
-        selectBoxData: [],
-        chartData: {},
+        boardDiv: "agency",
+        initState: {
+          id: key,
+          title: this.getCardTitle(key),
+          selectBoxData,
+          selectOption: "", // select box initail value
+        },
       });
     }
   };
@@ -49,42 +58,18 @@ export default class AgencyBoard {
   };
 
   getCardTitle = (id) => {
-    let result = "";
-    switch (id) {
-      case "cetification":
-        result = "인증";
-        break;
-      case "regis":
-        result = "등록";
-        break;
-      case "approval":
-        result = "승인";
-        break;
-    }
+    const cartTitle = {
+      cetification: "기관 인증",
+      regis: "기관 등록",
+      approval: "기관 승인",
+    };
 
-    return result;
+    return cartTitle[id] || "No Title";
   };
 
   setState = (newState) => {
     this.#state = newState;
     this.render();
-  };
-
-  // selectBox 이벤트가 발생한 영역에서의 랜더링만 새로 하기 위해 부모에서 이벤트 관리
-  setCardData = (id) => {
-    if (!id) return;
-
-    // api request
-
-    // parsing data
-
-    // setSate card
-    const card = this.#cards[id];
-    card.setState({
-      title: this.getCardTitle(id),
-      selectBoxData: null,
-      chartData: null,
-    });
   };
 
   render = () => {
