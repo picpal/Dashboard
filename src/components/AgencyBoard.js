@@ -24,7 +24,7 @@ export default class AgencyBoard {
     // agency card wrapper
     const $cardWrap = this.getCardWrap();
 
-    // agency list
+    // agency list api request
     const selectBoxData = [
       { name: "현대카드", value: "C007" },
       { name: "블루월넛", value: "BWPG" },

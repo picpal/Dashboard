@@ -60,6 +60,7 @@ export default class PieChartCard {
   };
 
   chartRender = () => {
+    // api request
     const { chartData } = fakeRequest(this.#state.id);
 
     const chart = c3.generate({

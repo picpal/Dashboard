@@ -32,26 +32,27 @@ export default class LineChartCard {
     this.chartRender();
   };
 
-  // @fix require refactoring, low readability
   render = () => {
+    const charId = `chart_${this.#boardDiv}_${this.#state.id}`;
+
     this.#target.innerHTML = `
       <div class="flex flex-row">
         <h3 class="text-white w-6/12">${this.#state.title}</h3>
       </div>
-
       <div class="mt-11">
-        <div id="chart_${this.#boardDiv}_${
-      this.#state.id
-    }" class="w-full"></div>
+        <div id="${charId}" class="w-full"></div>
       </div>
     `;
   };
 
   chartRender = () => {
+    // api request
+    const lineChartData = ["data1", 100, 200, 100, 30, 300];
+
     var chart = c3.generate({
       bindto: `#chart_${this.#boardDiv}_${this.#state.id}`,
       data: {
-        columns: [["data1", 100, 200, 100, 30, 300]],
+        columns: [lineChartData],
         colors: {
           data1: d3.rgb(255, 175, 200),
         },

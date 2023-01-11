@@ -24,7 +24,7 @@ export default class ChnlBoard {
     // chnl card wrapper
     const $cardWrap = this.getCardWrap();
 
-    // chnl list
+    // chnl list api request
     const selectBoxData = [
       { name: "대한항공", value: "DPAY" },
       { name: "EPIT", value: "EPIT" },
