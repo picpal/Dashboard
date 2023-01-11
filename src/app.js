@@ -1,7 +1,6 @@
 import Loading from "./components/Loading.js";
 import Header from "./components/Header.js";
-import Navigator from "./components/Navigator.js";
-import Dashboard from "./components/Dashboard.js";
+import Content from "./components/Content.js";
 
 // 데이터 캐시
 const cashe = {};
@@ -11,7 +10,6 @@ export default class App {
   #state;
   #loading;
   #header;
-  #navigator;
   #dashboard;
 
   constructor(app) {
@@ -32,8 +30,7 @@ export default class App {
 
   initContent = () => {
     this.#header = new Header({ $app: this.#app, initState: {} });
-    this.#navigator = new Navigator({ $app: this.#app, initState: {} });
-    this.#dashboard = new Dashboard({ $app: this.#app, initState: {} });
+    this.#dashboard = new Content({ $app: this.#app, initState: {} });
   };
 
   setState = (newState) => {

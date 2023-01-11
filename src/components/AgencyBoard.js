@@ -1,4 +1,4 @@
-import ChartCard from "./ChartCard.js";
+import PieChartCard from "./PieChartCard.js";
 
 export default class AgencyBoard {
   #app;
@@ -33,7 +33,7 @@ export default class AgencyBoard {
     // card conponent initialize
     const cards = this.#cards;
     for (let key in cards) {
-      cards[key] = new ChartCard({
+      cards[key] = new PieChartCard({
         $app: $cardWrap,
         boardDiv: "agency",
         initState: {

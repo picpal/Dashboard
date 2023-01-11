@@ -1,20 +1,52 @@
+import CountBoard from "./CountBoard.js";
+import LineChartCard from "./LineChartCard.js";
+
 export default class TotalBoard {
   #app;
   #state;
   #target;
+  #cards;
 
   constructor(params) {
     this.#app = params.$app;
     this.#state = {};
+    this.#cards = {
+      count: null,
+      periodFlow: null,
+    };
 
     this.createTarget();
     this.render();
+    this.initCard();
   }
 
   createTarget = () => {
     this.#target = document.createElement("section");
-    this.#target.setAttribute("class", "flex flex-row gap-6");
+    this.#target.setAttribute("id", "total_board");
+    this.#target.setAttribute("class", "");
     this.#app.appendChild(this.#target);
+  };
+
+  initCard = () => {
+    const $cardWrap = this.getCardWrap();
+
+    this.#cards.count = new CountBoard({
+      $app: $cardWrap,
+      boardDiv: "total",
+      initState: {
+        id: "count",
+        title: "발생율",
+      },
+    });
+
+    this.#cards.periodFlow = new LineChartCard({
+      $app: $cardWrap,
+      boardDiv: "total",
+      initState: {
+        id: "periodFlow",
+        title: "기간 추세",
+      },
+    });
   };
 
   setState = (newState) => {
@@ -22,46 +54,14 @@ export default class TotalBoard {
     this.render();
   };
 
+  getCardWrap = () => {
+    return document.querySelector("#total_board .cardWrap");
+  };
+
   render = () => {
     this.#target.innerHTML = `
         <h2 class="hidden">전체 현황</h2>
-
-        <div class="w-4/12 flex flex-row gap-6">
-          <!-- 성공 건수 -->
-          <div id="total_success_info" class="p-2 pt-5 pb-4 w-6/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-green-400 w-20 h-20 text-center text-white font-normal text-2xl pt-6">55%</div>
-            <div class="count mt-3 text-white text-center">11,220 건</div>
-            <div class="description -mt-1 text-white text-center">total Success count</div>
-          </div>
-
-          <!-- 실패 건수 -->
-          <div id="total_fail_info" class="p-2 pt-5 pb-4 w-6/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-red-400 w-20 h-20 text-center text-white font-normal text-2xl pt-6">55%</div>
-            <div class="count mt-3 text-white text-center">11,220 건</div>
-            <div class="description -mt-1 text-white text-center">total fail count</div>
-          </div>
-        </div>
-
-        <div class="w-4/12 flex flex-row gap-6">
-          <!-- 통신장애 건수 -->
-          <div id="total_error_info" class="p-2 pt-5 pb-4 w-6/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-orange-400 w-20 h-20 text-center text-white font-normal text-2xl pt-6">55%</div>
-            <div class="count mt-3 text-white text-center">11,220 건</div>
-            <div class="description -mt-1 text-white text-center">total error count</div>
-          </div>
-
-          <!-- 타임아웃 건수 -->
-          <div id="total_timeout_info" class="p-2 pt-5 pb-4 w-6/12 rounded-lg bg-gray-800">
-            <div class="ratio_circle m-auto rounded-full bg-yellow-400 w-20 h-20 text-center text-white font-normal text-2xl pt-6">55%</div>
-            <div class="count mt-3 text-white text-center">11,220 건</div>
-            <div class="description -mt-1 text-white text-center">total timeout count</div>
-          </div>
-        </div>
-
-        <!-- 기간 추세 그래프 -->
-        <div id="total_flow_info" class="w-4/12 rounded-lg p-2 pt-4 pb-4 bg-gray-800">
-          
-        </div>
+        <div class="cardWrap flex flex-row gap-6"></div>
     `;
   };
 }
